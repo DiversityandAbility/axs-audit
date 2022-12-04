@@ -1,0 +1,31 @@
+{
+    "id": "dna-learn",
+    "name": "Small demo crawl of D&A website",
+    "page_limit": 10,
+    "viewports": [
+        {
+            "name": "desktop",
+            "height": 720,
+            "width": 1280
+        },
+        {
+            "name": "mobile",
+            "height": 844,
+            "width": 390
+        }
+    ],
+    "seeds": [
+        [
+            [
+                "goto",
+                "https://learn.diversityandability.com/"
+            ]
+        ]
+    ],
+    "on_load": [
+        [
+            "wait-for-load-state",
+            "networkidle"
+        ]
+    ]
+}

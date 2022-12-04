@@ -1,0 +1,9 @@
+venv/
+.env/
+.vantage
+results/
+.DS_Store
+__pycache__
+.docker/
+.pytest_cache
+old_results/

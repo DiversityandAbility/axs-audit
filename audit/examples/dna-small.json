@@ -1,0 +1,52 @@
+{
+    "id": "dna-small",
+    "name": "Small demo crawl of D&A website",
+    "page_limit": 10,
+    "viewports": [
+        {
+            "name": "desktop",
+            "height": 720,
+            "width": 1280
+        },
+        {
+            "name": "tablet",
+            "height": 1080,
+            "width": 810
+        },
+        {
+            "name": "mobile",
+            "height": 844,
+            "width": 390
+        }
+    ],
+    "seeds": [
+        [
+            [
+                "goto",
+                "https://diversityandability.com/"
+            ],
+            [
+                "click",
+                "#hs-eu-confirmation-button"
+            ],
+            [
+                "click",
+                "#cookie-close"
+            ]
+        ]
+    ],
+    "on_load": [
+        [
+            "lazy-scroll",
+            "bottom"
+        ],
+        [
+            "wait-for-load-state",
+            "networkidle"
+        ],
+        [
+            "wait-for-timeout",
+            1000
+        ]
+    ]
+}

@@ -1,0 +1,26 @@
+{
+    "id": "small",
+    "name": "Small demo crawl of any website.",
+    "page_limit": 10,
+    "viewports": [
+        {
+            "name": "desktop",
+            "height": 720,
+            "width": 1280
+        }
+    ],
+    "seeds": [
+        [
+            [
+                "goto",
+                "STARTING_URL"
+            ]
+        ]
+    ],
+    "on_load": [
+        [
+            "wait-for-load-state",
+            "networkidle"
+        ]
+    ]
+}
