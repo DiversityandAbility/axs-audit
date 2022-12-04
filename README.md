@@ -1,16 +1,11 @@
-Python module per WCAG item:
-    EXAMPLE_PASS
-    EXAMPLE_FAIL - both HTML strings that show how to pass or fail the item
-    def test() - takes in a browser client object and yields Warning or Failure objects
-    Warning|Failure - essentially tuples of (WCAG_CODE, page, location)
+# AXS Audit
 
-The python modules can be used to iterate through all of the WCAG items.
-    So we can auto build tests using EXAMPLE_PASS EXAMPLE_FAIL
-    We can build documentation and example pages
+AXS Audit is an open source tool that helps people run WCAG 2.2 web accessibility audits.
 
-To start the scan need a config file that provides a set of seeds:
-    Seeds are tuples of (action, location, data)
-        e.g. (visit "google.com")
-        e.g. (type "#username" "hello")
+We have two aims for this project:
 
-Crawl sites using browser thing, for each page pass it thorugh all the modules.
+1. Build a tool that guides a person through an audit. It should automate as much as possible, but it should be able to defer decisions to the auditor when needed. This should make a tool that can deeply adhere to the WCAG spec. It's not just "this img has alt text", it's producing a full understanding of the context of the image and whether or not the alt text does what it needs to.
+
+2. Have a code base and documentation that makes WCAG easy to learn. We want a tool that can produce non-technical descriptions of failures and warnings. That can link to the relevant WCAG spec, but can also provide enough information and examples to make the report understandable for everyone.
+
+It's very early days for this tool. We'd really love some help in building it. If you're interested, get in touch with us at https://diversityandability.com/contact.
