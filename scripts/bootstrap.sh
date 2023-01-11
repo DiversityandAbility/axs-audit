@@ -1,7 +1,4 @@
 #!/bin/sh
-# ---
-# help-text: Bootstrap this project
-# ---
 set -eu
 
 python3.10 -m venv venv
