@@ -70,6 +70,9 @@ class Technique(Resolveable):
             results.append(r)
             is_failure = is_failure or r.IS_FAILURE
         return TechniqueResult(is_failure, results=results)
+    
+    def elements_needed(self):
+        return []
 
     def test(self, element):
         raise NotImplementedError()
