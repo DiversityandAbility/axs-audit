@@ -70,6 +70,35 @@ class A1_1_1(base.Criteria):
 
     def find_elements(self, page):
         tags = ["img", "object", "svg", "audio", "video"]
+        """
+        won't help for aria6
+        maybe find_elements should find ALL elements and then its up to techniques to find 
+        the attributes/tags they're looking for?
+            would cause a lot of redundant searching though :(
+        
+        idea 2?
+        find img elements, and then pass them through to each technique that would look at img,
+        find audio elements and then pass them through etc. etc.
+        find elements with aria tag and then pass them through etc. etc.
+        this would make 1_1_1 not needed and then also harder to tell which criteria passed?
+        instead, find respective lists (img, audio, aria), get results from techniques
+        then criteria would look at results of techs, find things applicable to their respective
+        criterias (e.g. 1_1_1 would go "oh i use ARIA6, let me use those results" but ignore like
+        F20000 because it doesn't use it)
+            also chance for a lot of re-looking at certain elements?
+        
+        idea 3? combo of idea 2
+        for each element
+            is it an image?
+                if yes, run through all the image related techniques
+            else is it audio?
+                ...
+            does it have aria labels?
+                if yes, run through all aria label related techniques
+        
+        some questions are very similar/out right the same for different techniques
+        stored in ask? cannot remember
+        """
         for t in tags:
             matches = page.locator(f"css={t}")
             for idx in range(matches.count()):
