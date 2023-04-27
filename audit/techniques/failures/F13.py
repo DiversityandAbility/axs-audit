@@ -14,6 +14,10 @@ class F13(Technique):
     Check that the information conveyed by color differences is not included in the text alternative for the image.
     """
 
+    def elements_needed(self):
+        return ["img"] #unsure if this only refers to image tags or if there's some secret
+        # other image im unaware of
+
     def test(self, element):
         alt_text = element.get_attribute("alt")
         if alt_text:

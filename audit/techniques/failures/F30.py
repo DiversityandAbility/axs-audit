@@ -12,6 +12,9 @@ class F30(Technique):
     Check each text alternative to see if it is not actually a text alternative for the non-text content.
     """
 
+    def elements_needed(self):
+        return ["alt"]
+
     def test(self, element):
         alt_text = element.get_attribute("alt")
         if alt_text:

@@ -13,7 +13,7 @@ class H67(Technique):
     2. Check that alt attribute is present and empty.
     
     All checks are True to be sufficient
-    """
+    """ 
 
     def test(self, element):
         human_answer = ""

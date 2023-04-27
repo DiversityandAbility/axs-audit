@@ -18,17 +18,6 @@ class G68(Technique):
     """
 
     def test(self, element):
-        """
-        Includes:
-        - ARIA6
-        - ARIA10
-        - G196
-        - H2
-        - H37
-        - H53
-        - H86
-        - PDF1
-        """
         yield AXSSkipped(
             self.code,
             self.code_description,

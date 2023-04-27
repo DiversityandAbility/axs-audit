@@ -16,6 +16,9 @@ class F3(Technique):
     If 2 and 3 are both False, then the content fails the criteria
     """
 
+    def elements_needed(self):
+        return [] #unsure how to check if included in CSS
+
     def test(self, element):
         # ALT! Do not know how to check if included in CSS
         yield AXSSkipped(

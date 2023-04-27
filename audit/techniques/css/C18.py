@@ -7,6 +7,10 @@ class C18(Technique):
     code_description = "Using CSS margin and padding rules instead of spacer images for layout design"
     reading = "https://www.w3.org/WAI/WCAG22/Techniques/css/C18"
 
+    def elements_needed(self):
+        #TODO: Figure out what to do about C18
+        return []
+
 
     def test(self, element):
         """

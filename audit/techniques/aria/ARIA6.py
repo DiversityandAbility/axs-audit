@@ -1,5 +1,6 @@
 from audit.techniques.base import Technique
-from audit.results import AXSSkipped
+from audit.results import AXSSkipped, AXSSufficient
+from audit.ask import ask
 
 
 class ARIA6(Technique):
@@ -14,17 +15,16 @@ class ARIA6(Technique):
 
     """
 
+    def elements_needed(self):
+        # For each element where an aria-label is present.
+        return "aria-label" #?
+
     def test(self, element):
-        yield AXSSkipped(self.code, self.code_description, element)
-        """
-        # TODO
-        # needs a check for if it has an aria-label
-        # if aria-label, do the following ask-code, otherwise return AXSResult (no aria-label)
-        label = element.get_attribute("aria-label")
-        if label:
+        aria_label = element.getAttribute("aria-label") # is this going to be in img, object, svg, audio, video from a_1_1_1?
+        if aria_label is not None:
             human_answer = ask(
                 element,
-                f"Does the text description '{label}' accurately label the object, provide a description of the objects purpose, or provides equivalent information?",
+                f"Does the text description '{aria_label}' accurately label the object, provide a description of the objects purpose, or provides equivalent information?",
                 ("Y", "Yes"),
                 ("N", "No"),
             )
@@ -32,6 +32,6 @@ class ARIA6(Technique):
                 yield AXSSufficient(
                     self.code,
                     self.code_description,
-                    element,
+                    element
                 )
-        """
+        # yield AXSSkipped(self.code, self.code_description, element)

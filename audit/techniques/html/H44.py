@@ -24,6 +24,15 @@ class H44(Technique):
     1. and 2. must be True, and if the success criterion is also 3.3.2, 3. must be True
     """
 
+    def elements_needed(self):
+        """ input type=text, file, password, textarea, select
+
+        AND input type=checkbox, radio
+
+        should H44 be split in 2? 1 for first half, 2 for 2nd half?
+        """
+        return 0
+
     def test(self, element):
         yield AXSSkipped(
             self.code,

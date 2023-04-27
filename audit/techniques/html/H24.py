@@ -17,6 +17,9 @@ class H24(Technique):
     All checks are True to be sufficient
     """
 
+    def elements_needed(self):
+        return ["map"]
+
     def test(self, element):
         # ALT! Unsure how to check for images inside a <map>
         yield AXSSkipped(

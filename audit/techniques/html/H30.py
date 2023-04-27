@@ -19,6 +19,9 @@ class H30(Technique):
     All checks are True to be sufficient
     """
 
+    def elements_needed(self):
+        return ["a"]
+
     def test(self, element):
         yield AXSSkipped(
             self.code,

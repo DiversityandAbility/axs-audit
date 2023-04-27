@@ -14,6 +14,9 @@ class H53(Technique):
     1. is True to be sufficient
     """
 
+    def elements_needed(self):
+        return ["object"]
+
     def test(self, element):
         yield AXSSkipped(
             self.code,

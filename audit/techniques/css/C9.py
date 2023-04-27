@@ -11,6 +11,10 @@ class C9(Technique):
     Check for the presence of decorative images
     Check that they are included with CSS
     """
+
+    def elements_needed(self):
+        #TODO: understand what C9 actually means
+        return []
     
     def test(self, element):
         # ALT! Do not know how to check if included in CSS

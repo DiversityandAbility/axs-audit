@@ -15,6 +15,9 @@ class H36(Technique):
     Both are True to be sufficient
     """
 
+    def elements_needed(self):
+        return ["input", 'type="image"']
+
     def test(self, element):
         # ALT! Unsure of how to check for input elements/buttons
         yield AXSSkipped(

@@ -17,6 +17,10 @@ class F72(Technique):
     
     """
 
+    def elements_needed(self):
+        # HOW TO TEST?
+        return []
+
     def test(self, element):
         yield AXSSkipped(
             self.code,

@@ -13,6 +13,9 @@ class H96(Technique):
     Check that the video contains a track element of kind descriptions in the language of the video.
     """
 
+    def elements_needed(self):
+        return ["video"]
+
     def test(self, element):
         yield AXSSkipped(
             self.code,

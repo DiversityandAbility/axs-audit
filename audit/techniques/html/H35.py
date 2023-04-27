@@ -16,6 +16,9 @@ class H35(Technique):
     2. and 3. are True to be sufficient
     """
 
+    def elements_needed(self):
+        return ["applet"]
+
     def test(self, element):
         yield AXSSkipped(
             self.code,

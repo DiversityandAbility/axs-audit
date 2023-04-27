@@ -18,6 +18,11 @@ class F65(Technique):
     Check if the aria-label attribute is present AND check if aria-label is accessibility supported.
     Check if the title attribute is present AND check if title is accessibility supported.
     """
+
+    def elements_needed(self):
+        return ["img", "OR", "area", "OR", ["input", 'type="image"']]
+        # I have 0 clue how to actually structure these
+
     def test(self, element):
         # TODO a lot of things depend on if an image is descriptive (F38, F39)
         # maybe change how that might work?

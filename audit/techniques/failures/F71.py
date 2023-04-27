@@ -12,6 +12,11 @@ class F71(Technique):
     2. If the characters used do not match the appropriate characters for the displayed glyphs in the human language of the content, then look-alike glyphs are being used.
     (3.? If look-alike glyphs are used, and there is not a text alternative for any range of text that uses look-alike glyphs, then the content does not meet the Success Criterion.)
     """
+
+    def elements_needed(self):
+        # HOW TO TEST?
+        return []
+    
     def test(self, element):
         yield AXSSkipped(
             self.code,

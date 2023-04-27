@@ -16,6 +16,9 @@ class H45(Technique):
     All are True to be sufficient
     """
 
+    def elements_needed(self):
+        return ["img"]
+
     def test(self, element):
         yield AXSSkipped(
             self.code,

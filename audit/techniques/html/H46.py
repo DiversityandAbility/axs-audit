@@ -16,6 +16,9 @@ class H46(Technique):
     1. or 2. is True
     """
 
+    def elements_needed(self):
+        return ["embed"]
+
     def test(self, element):
         yield AXSSkipped(
             self.code,

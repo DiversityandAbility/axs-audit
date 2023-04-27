@@ -17,6 +17,9 @@ class ARIA15(Technique):
     Examine whether the combined text equivalent and associated text description accurately describe or provide the equivalent purpose to the object.
     """
 
+    def elements_needed(self):
+        return ["img", "AND", "aria-describedby"]
+
     def test(self, element):
         # TODO
         # 1 and 2 can be programmatically determined?

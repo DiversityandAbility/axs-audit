@@ -17,6 +17,10 @@ class H2(Technique):
     All checks are True to be sufficient
     """
 
+    def elements_needed(self):
+        return ["a"]
+        # how to return images inside <a>?
+
     def test(self, element):
         # ALT! Unsure how to check for images inside <a>
         yield AXSSkipped(

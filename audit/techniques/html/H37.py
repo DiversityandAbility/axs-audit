@@ -17,6 +17,9 @@ class H37(Technique):
     #2 and #3 are True for this to be sufficient
     """
 
+    def elements_needed(self):
+        return ["img"]
+
     def test(self, element):
         # human please check, does this image need alt text
         # if yes:

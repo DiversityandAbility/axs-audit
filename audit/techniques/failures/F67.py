@@ -13,6 +13,10 @@ class F67(Technique):
     Check that the long description serves the same purpose or presents the same information as the non-text content.
     """
 
+    def elements_needed(self):
+        #TODO: Figure out what elements are non-text
+        return []
+
     def test(self, element):
         yield AXSSkipped(
             self.code,

@@ -18,6 +18,10 @@ class ARIA9(Technique):
     Check that the concatenated content of elements referenced by aria-labelledby is descriptive for the purpose or function of the element labeled
     """
 
+    def elements_needed(self):
+        return ["aria-labelledby"] # also needs to check that the IDs of aria-labelledby match?
+        # done in test(), not elements_needed probably
+
     def test(self, element):
         # TODO
         # Ashley does not understand how to test for ARIA9!

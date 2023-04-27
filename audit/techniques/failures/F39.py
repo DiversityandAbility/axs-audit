@@ -16,6 +16,9 @@ class F39(Technique):
     Check that the alt attribute for these elements is null.
     """
 
+    def elements_needed(self):
+        return ["img"]
+
     def test(self, element):
         human_answer = ask(
             element,

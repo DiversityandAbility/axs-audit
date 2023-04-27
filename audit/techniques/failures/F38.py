@@ -17,6 +17,10 @@ class F38(Technique):
     1 AND 2 must be true for this to fail
     """
 
+    def elements_needed(self):
+        return ["img"]
+        # is there any way to say ["img", "AND", "decorative"] here?
+
     def test(self, element):
         human_answer = ask(
             element,

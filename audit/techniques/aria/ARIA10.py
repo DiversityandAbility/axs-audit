@@ -16,6 +16,12 @@ class ARIA10(Technique):
     Determine that the text of the element identified by the aria-labelledby attribute accurately labels the element, provides a description of its purpose, or provides equivalent information.
     """
 
+    def elements_needed(self):
+        return ["aria-labelledby"] 
+        # "and the element does not support the alt attribute" = not img
+        # apparently also not <area> and not (<input> using the type="image")!
+        # return ["aria-labelledby", "AND", "NOT", "img"] ?
+
     def test(self, element):
         # no clue how to check 1. ("examine each element" - does that mean examine page?)
         yield AXSSkipped(self.code, self.code_description, element)
