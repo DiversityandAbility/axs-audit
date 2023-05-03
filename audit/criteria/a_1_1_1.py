@@ -11,6 +11,9 @@ How to meet: https://www.w3.org/WAI/WCAG22/quickref/#non-text-content
 """
 from audit.ask import ask
 from audit.criteria import base
+from audit.techniques.aria.ARIA10 import ARIA10
+from audit.techniques.aria.ARIA15 import ARIA15
+from audit.techniques.aria.ARIA6 import ARIA6
 from audit.techniques.css.C18 import C18
 from audit.techniques.css.C9 import C9
 from audit.techniques.failures.F30 import F30
@@ -23,15 +26,25 @@ from audit.techniques.failures.F72 import F72
 from audit.techniques.general.G100 import G100
 from audit.techniques.general.G143 import G143
 from audit.techniques.general.G144 import G144
+from audit.techniques.general.G196 import G196
 from audit.techniques.general.G68 import G68
+from audit.techniques.general.G73 import G73
+from audit.techniques.general.G74 import G74
 from audit.techniques.general.G82 import G82
+from audit.techniques.general.G92 import G92
 from audit.techniques.general.G94 import G94
 from audit.techniques.general.G95 import G95
 from audit.techniques.failures.F13 import F13
 from audit.techniques.failures.F20 import F20
 from audit.techniques.failures.F3 import F3
+from audit.techniques.html.H2 import H2
+from audit.techniques.html.H35 import H35
+from audit.techniques.html.H37 import H37
 from audit.techniques.html.H46 import H46
+from audit.techniques.html.H53 import H53
 from audit.techniques.html.H67 import H67
+from audit.techniques.html.H86 import H86
+from audit.techniques.pdf.PDF1 import PDF1
 from audit.techniques.pdf.PDF4 import PDF4
 
 
@@ -39,7 +52,12 @@ class A1_1_1(base.Criteria):
     name = "1_1_1"
     level = "A"
     summary = "Text alternatives for non-text content"
-    understanding = "https://www.w3.org/WAI/WCAG21/Understanding/non-text-content"
+    understanding = "https://www.w3.org/WAI/WCAG22/Understanding/non-text-content"
+
+    B_SHORT = (
+        ARIA6() | ARIA10() | G196() | H2() | H35() | H37() | H53() | H86() | PDF1()
+    )
+    B_LONG = ARIA15() | G73() | G74() | G92() | H53()
 
     SUFFICIENT = {
         "A": G94(),

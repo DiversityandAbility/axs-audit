@@ -1,6 +1,5 @@
-from audit.ask import ask
-from audit.techniques import Technique
-from results import AXSSufficient, AXSSkipped
+from audit.techniques.base import Technique
+from audit.results import AXSSkipped
 
 
 class ARIA9(Technique):

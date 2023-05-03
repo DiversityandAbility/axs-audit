@@ -15,7 +15,7 @@ CRAWLED_URLS = set()
 
 
 def crawl(browser, site, page, url):
-    print(f"  Found page: {url}")
+    print(f"Found page: {url}")
     run_instructions(page, site["on_load"])
     yield page
     CRAWLED_URLS.add(url)
@@ -61,9 +61,8 @@ def test(site, results_path, page, id_):
         )
         for C in criteria:
             c = C()
-            print(f"      {c.level}{c.name} - {c.summary}")
+            print(f"{c.level}{c.name} - {c.summary}")
             for elem in c.find_elements(page):
-                print(f"        {elem._impl_obj._selector}")
                 for tech_result in c.test(elem):
                     yield from tech_result.results
 
@@ -106,7 +105,7 @@ def main(details_path):
     results_path.mkdir(parents=True)
     details = {"started_on": datetime.now(timezone.utc).isoformat()}
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=False)
+        browser = p.chromium.launch(headless=True)
         browser_context = browser.new_context()
 
         with open(results_path / "results.csv", "w") as fp:
@@ -127,17 +126,18 @@ def main(details_path):
             result_count = 0
             for seed_instructions in site["seeds"]:
                 seed_page = browser_context.new_page()
+                seed_page.add_init_script(path="audit/browser/finder.js")
                 run_instructions(seed_page, seed_instructions)
 
                 print(f"Starting seed: {seed_page.url}")
                 for page in crawl(browser_context, site, seed_page, seed_page.url):
                     page_count += 1
                     page_id = str(uuid.uuid4())
-                    print(f"    Page ID: {page_id}")
+                    print(f"\nPage ID: {page_id}")
                     screenshots = {}
                     for result in test(site, results_path, page, page_id):
                         result_count += 1
-                        print(f"          {result}")
+                        print(f"\n{result}")
                         d = result.as_dict()
                         d["page"] = page.url
                         d["screenshot"] = screenshots.get(d["element"], None)

@@ -22,7 +22,26 @@ def set_answer(element, question, answer):
     _ANSWERS[element][question] = answer
 
 
+def get_selector(element):
+    return element.evaluate("el => window.finder(el)")
+
+
 def ask(element, question, *answers):
+    answer = get_answer(element, question)
+    if answer:
+        return answer
+
+    selector = get_selector(element)
+    print(f"\nConsidering: {selector}")
+    print(question)
+    for ans in answers:
+        print(f"{ans[0]}) {ans[1]}")
+    answer = input("Choose: ").upper()
+    set_answer(element, question, answer)
+    return answer
+
+
+def browser_ask(element, question, *answers):
     answer = get_answer(element, question)
     if answer:
         return answer
@@ -65,6 +84,10 @@ def ask(element, question, *answers):
 
 
 def init(page):
+    pass
+
+
+def browser_init(page):
     page.add_style_tag(
         content="""
         #axs-audit-ask-container {

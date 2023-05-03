@@ -1,14 +1,11 @@
-from audit.criteria import base
-
-from audit.techniques import Technique
-from results import AXSSufficient, AXSWarning, AXSSkipped
+from audit.techniques.base import Technique
+from audit.results import AXSSkipped
 
 
 class ARIA15(Technique):
     code = "ARIA15"
     code_description = "Using aria-describedby to provide descriptions of images"
     reading = "https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA15"
-    
 
     """
     Procedure
@@ -21,8 +18,4 @@ class ARIA15(Technique):
         # TODO
         # 1 and 2 can be programmatically determined?
         # 3 needs to ask a human
-        yield AXSSkipped(
-            self.code,
-            self.code_description,
-            element
-        )
+        yield AXSSkipped(self.code, self.code_description, element)

@@ -1,3 +1,4 @@
+.vscode
 venv/
 results/
 .DS_Store
