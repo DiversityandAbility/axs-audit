@@ -83,10 +83,6 @@ def browser_ask(element, question, *answers):
     return answer
 
 
-def init(page):
-    pass
-
-
 def browser_init(page):
     page.add_style_tag(
         content="""

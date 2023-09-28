@@ -1,7 +1,7 @@
 {
-    "id": "small",
+    "id": "axs-passport",
     "name": "Small demo crawl of any website.",
-    "page_limit": 1,
+    "page_limit": 10,
     "viewports": [
         {
             "name": "desktop",
@@ -13,7 +13,7 @@
         [
             [
                 "goto",
-                "https://axs-passport.co"
+                "https://www.axs-passport.co"
             ]
         ]
     ],
@@ -22,5 +22,11 @@
             "wait-for-load-state",
             "networkidle"
         ]
-    ]
+    ],
+    "answers": {
+        "page-language-en-https://www.axs-passport.co/": true,
+        "page-language-en-https://www.axs-passport.co/support/": true,
+        "page-language-en-https://www.axs-passport.co/pricing/": false
+    },
+    "results": {}
 }

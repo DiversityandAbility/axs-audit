@@ -2,13 +2,13 @@ from dataclasses import dataclass
 from typing import List
 from audit.ask import ask
 
-from audit.results import AXSResult
+from audit.results import Result
 
 
 @dataclass
 class TechniqueResult:
     is_failure: bool
-    results: List[AXSResult]
+    results: List[Result]
 
 
 class Resolveable:

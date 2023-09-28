@@ -1,24 +1,17 @@
+from enum import Enum
+
+
 class Criteria:
-    SUFFICIENT = None
-    ADVISORY = None
-    FAILURE = None
+    level = None
+    ref = None
+    name = None
+    summary = None
 
-    def test(self, element):
-        yield from self.test_failure(element)
-        yield from self.test_sufficient(element)
-        yield from self.test_advisory(element)
-
-    def find_elements(self, page):
+    def test(self, page, context):
         raise NotImplementedError()
 
-    def test_failure(self, element):
-        if self.FAILURE is not None:
-            yield self.FAILURE.resolve(element)
 
-    def test_sufficient(self, element):
-        if self.SUFFICIENT is not None:
-            yield self.SUFFICIENT.resolve(element)
-
-    def test_advisory(self, element):
-        if self.ADVISORY is not None:
-            yield self.ADVISORY.resolve(element)
+class Level(Enum):
+    A = "A"
+    AA = "AA"
+    AAA = "AAA"

@@ -1,9 +1,19 @@
+from enum import Enum
 import uuid
 
 
-class AXSResult:
-    TYPE = "Result"
-    IS_FAILURE = False
+class ResultType(Enum):
+    WARNING = "Warning"
+    FAILURE = "Failure"
+    SKIPPED = "Skipped"
+    ADVISORY = "Advisory"
+    SUFFICIENT = "Sufficient"
+    ASK = "Ask"
+
+
+class Result:
+    TYPE = ResultType.FAILURE
+    IS_FAILURE = True
 
     def __init__(self, code, description, element):
         self.id_ = str(uuid.uuid4())
@@ -17,29 +27,49 @@ class AXSResult:
     def as_dict(self):
         return {
             "id": self.id_,
-            "type": self.TYPE,
+            "type": self.TYPE.value,
             "code": self.code,
             "description": self.description,
             "element": self.element._impl_obj._selector,
         }
 
+    @classmethod
+    def from_(cls, other):
+        return cls(other.code, other.description, other.element)
 
-class AXSWarning(AXSResult):
-    TYPE = "Warning"
+
+class Warning(Result):
+    TYPE = ResultType.WARNING
 
 
-class AXSFailure(AXSResult):
-    TYPE = "Failure"
+class Failure(Result):
+    TYPE = ResultType.FAILURE
     IS_FAILURE = True
 
 
-class AXSSkipped(AXSResult):
-    TYPE = "Skipped"
+class Skipped(Result):
+    TYPE = ResultType.SKIPPED
 
 
-class AXSSufficient(AXSResult):
-    TYPE = "Sufficient"
+class Sufficient(Result):
+    TYPE = ResultType.SUFFICIENT
 
 
-class AXSAdvisory(AXSResult):
-    TYPE = "Advisory"
+class Advisory(Result):
+    TYPE = ResultType.ADVISORY
+
+
+class Ask(Result):
+    TYPE = ResultType.ASK
+    YESNO = [(True, "Yes"), (False, "No")]
+
+    def __init__(self, code, question, element, question_id, choices):
+        super().__init__(code, question, element)
+        self.question_id = question_id
+        self.choices = choices
+
+    def as_dict(self):
+        d = super().as_dict()
+        d["question_id"] = self.question_id
+        d["choices"] = self.choices
+        return d
