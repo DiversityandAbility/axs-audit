@@ -1,5 +1,3 @@
-import csv
-import re
 import time
 import json
 import uuid
@@ -9,7 +7,6 @@ from urllib.parse import urlparse, urlsplit, urlunsplit, urljoin
 
 from playwright.sync_api import sync_playwright, TimeoutError
 
-from audit import ask
 from audit.criteria import all_ as criteria
 
 
@@ -81,7 +78,7 @@ def test(context, page, resp):
         }
         for result in C().test(page, test_context):
             print(f"    {result}")
-            sid = screenshot(context, result.element)
+            sid = screenshot(context, getattr(result, "element", page))
             context["results"][page.url]["screenshots"][f"result-{result.id_}"] = sid
             context["results"][page.url]["results"].append(result.as_dict())
             yield result

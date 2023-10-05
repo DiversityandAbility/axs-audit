@@ -3,68 +3,42 @@ import uuid
 
 
 class ResultType(Enum):
-    WARNING = "Warning"
-    FAILURE = "Failure"
-    SKIPPED = "Skipped"
     ADVISORY = "Advisory"
+    FAILURE = "Failure"
     SUFFICIENT = "Sufficient"
-    ASK = "Ask"
 
 
-class Result:
-    TYPE = ResultType.FAILURE
-    IS_FAILURE = True
+class Met(Enum):
+    NO = "No"
+    UNKNOWN = "Unknown"
+    YES = "Yes"
 
-    def __init__(self, code, description, element):
+
+class TechniqueResult:
+    def __init__(self, code, description, element, is_met, type):
         self.id_ = str(uuid.uuid4())
         self.code = code
         self.description = description
         self.element = element
-
-    def __str__(self):
-        return f"<{self.TYPE} {self.code} {self.element._impl_obj._selector} id={self.id_}>"
+        self.is_met = is_met
+        self.type = type
 
     def as_dict(self):
         return {
             "id": self.id_,
-            "type": self.TYPE.value,
+            "type": self.type.value,
+            "is_met": self.is_met.value,
             "code": self.code,
             "description": self.description,
             "element": self.element._impl_obj._selector,
         }
 
-    @classmethod
-    def from_(cls, other):
-        return cls(other.code, other.description, other.element)
 
-
-class Warning(Result):
-    TYPE = ResultType.WARNING
-
-
-class Failure(Result):
-    TYPE = ResultType.FAILURE
-    IS_FAILURE = True
-
-
-class Skipped(Result):
-    TYPE = ResultType.SKIPPED
-
-
-class Sufficient(Result):
-    TYPE = ResultType.SUFFICIENT
-
-
-class Advisory(Result):
-    TYPE = ResultType.ADVISORY
-
-
-class Ask(Result):
-    TYPE = ResultType.ASK
+class Ask(TechniqueResult):
     YESNO = [(True, "Yes"), (False, "No")]
 
-    def __init__(self, code, question, element, question_id, choices):
-        super().__init__(code, question, element)
+    def __init__(self, code, question, element, type, question_id, choices):
+        super().__init__(code, question, element, Met.UNKNOWN, type)
         self.question_id = question_id
         self.choices = choices
 
@@ -73,3 +47,19 @@ class Ask(Result):
         d["question_id"] = self.question_id
         d["choices"] = self.choices
         return d
+
+
+class CriteriaResult:
+    def __init__(self, code, description, is_met):
+        self.id_ = str(uuid.uuid4())
+        self.code = code
+        self.description = description
+        self.is_met = is_met
+
+    def as_dict(self):
+        return {
+            "id": self.id_,
+            "is_met": self.is_met.value,
+            "code": self.code,
+            "description": self.description,
+        }
