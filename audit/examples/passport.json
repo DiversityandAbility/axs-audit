@@ -26,7 +26,8 @@
     "answers": {
         "page-language-en-https://www.axs-passport.co/": true,
         "page-language-en-https://www.axs-passport.co/support/": true,
-        "page-language-en-https://www.axs-passport.co/pricing/": false
+        "page-language-en-https://www.axs-passport.co/pricing/": false,
+        "page-title-relevant-https://www.axs-passport.co/": true
     },
     "results": {}
 }
