@@ -14,6 +14,8 @@ class Criteria:
         raise NotImplementedError()
 
     def is_met(self, all_results):
+        # Do we need one for "not applicable?"
+        # Something might not meet a technique but it's not because it failed it, just because it didn't apply?
         for r in all_results:
             if r.is_met == Met.UNKNOWN:
                 return Met.UNKNOWN
