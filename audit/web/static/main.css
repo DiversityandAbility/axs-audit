@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    main a {
+        @apply text-dared hover:border-b-2
+    }
+
+    .btn {
+        @apply bg-dared text-dacoolblue rounded px-2 py-1 border-2 border-dared hover:bg-dacoolblue hover:text-dared
+    }
+  }

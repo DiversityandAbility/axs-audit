@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block main %}
+    <div class="flex flex-col h-full">
+        <h1 class="text-4xl mb-4">{{ project }}: {{ run_name }}</h1>
+        <div class="grow flex flex-row gap-2 h-full">
+            <div class="border-r-2 pr-4 mr-4 h-full">
+                <h2 class="text-2xl">Runs</h2>
+                <nav>
+                    <ul class="">
+                        <li class="my-4"><a href="" class="btn">New run...</a></li>
+                        {% for id, name in runs %}
+                            <li>
+                                {% if id == run_id %}
+                                    <span class="font-mono">{{ name }}</span>
+                                {% else %}
+                                    <a href="{{ url_for('audits_get', name=project, run=id) }}" class="font-mono">{{ name }}</a>
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </nav>
+            </div>
+            <div class="">
+                <h2 class="text-2xl">Results</h2>
+                <ul>
+                    {% for url, results in context.results.items() %}
+                        <li>
+                            <div>{{ url }}</div>
+                            <ul class="ml-4">
+                                {% for res in results.results %}
+                                    <li>
+                                        {{ res.code }} ({{ res.type }}) - {{ res.is_met }}
+                                        {% if "result-" + res.id in results.screenshots %}
+                                            <a href="{{ url_for('screenshot', name=project, run=run_id, url=url, id='result-' + res.id) }}">Screenshot</a>
+                                        {% endif %}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}

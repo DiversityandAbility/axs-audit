@@ -1,5 +1,12 @@
 {% extends "base.html" %}
 
 {% block main %}
-    <h1>Audits</h1>
+    <h1 class="text-4xl mb-4">Audits</h1>
+    <ul>
+        {% for p in projects %}
+            <li><a href="{{ url_for('audits_redirect', name=p) }}">{{ p }}</a></li>
+        {% else %}
+            <li>No projects...</li>
+        {% endfor %}
+    </ul>
 {% endblock %}

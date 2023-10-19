@@ -16,16 +16,16 @@
         <header class="my-4">
             <nav>
                 <div class="mx-4">
-                    <a href="{{ url_for('home') }}" class="text-4xl flex flex-row items-end gap-2">
+                    <a href="{{ url_for('audits_list') }}" class="text-4xl flex flex-row items-end gap-2">
                         <img src="{{ url_for('static', filename='logo.png') }}" alt="The AXS logo" width="200px">
                         <span class="sr-only">AXS</span>
                         AUDIT
                     </a>
                 </div>
                 <ul class="px-4 border-b-4 border-dadarkblue flex flex-row gap-4 items-center mt-4 text-2xl w-100">
-                    <li class="mb-[-1.5px]"><a href="{{ url_for('home') }}" class="border-b-4 border-b-dadarkblue hover:text-dared hover:border-dared px-2 {% if page == 'audits' %}text-dared border-b-dared{% endif %}">Audits</a></li>
-                    <li class="mb-[-1.5px]"><a href="{{ url_for('docs') }}" class="border-b-4 border-b-dadarkblue hover:text-dared hover:border-dared px-2 {% if page == 'docs' %}text-dared border-b-dared{% endif %}">Docs</a></li>
-                    <li class="mb-[-1.5px]"><a href="{{ url_for('settings') }}" class="border-b-4 border-b-dadarkblue hover:text-dared hover:border-dared px-2 {% if page == 'settings' %}text-dared border-b-dared{% endif %}">Settings</a></li>
+                    <li class="mb-[2.5px]"><a href="{{ url_for('audits_list') }}" class="border-b-4 border-b-dadarkblue hover:text-dared hover:border-dared px-2 pb-1 {% if page == 'audits' %}text-dared border-b-dared{% endif %}">Audits</a></li>
+                    <li class="mb-[2.5px]"><a href="{{ url_for('docs') }}" class="border-b-4 border-b-dadarkblue hover:text-dared hover:border-dared px-2 pb-1 {% if page == 'docs' %}text-dared border-b-dared{% endif %}">Docs</a></li>
+                    <li class="mb-[2.5px]"><a href="{{ url_for('settings') }}" class="border-b-4 border-b-dadarkblue hover:text-dared hover:border-dared px-2 pb-1 {% if page == 'settings' %}text-dared border-b-dared{% endif %}">Settings</a></li>
                     <li class="ml-auto text-sm"><a href="{{ url_for('signout') }}" class="hover:text-dared">Sign out</a></li>
                 </ul>
             </nav>
@@ -35,9 +35,9 @@
                 No content yet
             {% endblock %}
         </main>
-        <footer class="my-4 pt-4 px-4 border-t-4 border-dadarkblue">
+        <footer class="mt-4 py-4 px-4 border-t-4 border-dadarkblue">
             <div class="flex flex-row gap-2 w-full items-center">
-                <a href="{{ url_for('home') }}" class="text-xl flex flex-row items-end gap-2">
+                <a href="{{ url_for('audits_list') }}" class="text-xl flex flex-row items-end gap-2">
                     <img src="{{ url_for('static', filename='logo.png') }}" alt="The AXS logo" width="100">
                     <span class="sr-only">AXS</span>
                     AUDIT
