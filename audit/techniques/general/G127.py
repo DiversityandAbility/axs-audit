@@ -1,15 +1,12 @@
-from audit.results import Met, TechniqueResult, Ask
+from audit.results import Met, TechniqueResult, Ask, ResultType
 from audit.techniques.base import Technique
+from audit.techniques.html.H59 import H59
 
 
 class G127(Technique):
     code = "G127"
     code_description = "Identifying a Web page's relationship to a larger collection of Web pages"
     reading = "https://www.w3.org/WAI/WCAG22/Techniques/general/G127"
-
-    # TODO
-    # Add in second procedure for G127 (uses rel) which I think is needed for 2.4.8, but not for 2.4.2
-    # What to do if advisory version is not relevant to a web page?
 
     def test(self, page, context, type):
         html = page.locator("html")
@@ -24,7 +21,6 @@ class G127(Technique):
                 type=type,
             )
             return
-        
         qid = f"page-title-identify-{page.url}"
         title_identifies = context["answers"].get(qid, None)
         if title_identifies is None:
@@ -45,10 +41,20 @@ class G127(Technique):
                     type=type,
                 )
         else:
-            yield TechniqueResult(
+            H59Result = yield from H59().test(page, context, type=ResultType.ADVISORY)
+            if H59Result.is_met == Met.NO:
+                yield TechniqueResult(
                     self.code,
-                    "The title of the page does identify it to a larger collection of web pages",
+                    "The title of the page does not identify it to a larger collection of web pages",
                     html,
-                    is_met=Met.YES,
+                    is_met=Met.NO,
                     type=type,
                 )
+            else:
+                yield TechniqueResult(
+                        self.code,
+                        "The title of the page does identify it to a larger collection of web pages",
+                        html,
+                        is_met=Met.YES,
+                        type=type,
+                    )
