@@ -3,6 +3,7 @@ from audit.results import CriteriaResult, ResultType
 from audit.techniques.general.G88 import G88
 from audit.techniques.html.H25 import H25
 from audit.techniques.general.G127 import G127
+from audit.techniques.failures.F25 import F25
 
 
 class C_2_4_2(Criteria):
@@ -16,6 +17,7 @@ class C_2_4_2(Criteria):
 
         res = list(G88().test(page, context, type=ResultType.SUFFICIENT))
         res.extend(H25().test(page, context, type=ResultType.SUFFICIENT))
+        res.extend(F25().test(page, context, type=ResultType.FAILURE))
         yield from res
 
         yield CriteriaResult(self.ref, self.summary, self.is_met(res))
